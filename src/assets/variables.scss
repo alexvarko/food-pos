@@ -1,0 +1,15 @@
+@import 'app-colors';
+
+:root,
+:before,
+:after {
+  --base-dark-bg-1: #{$base-dark-bg-1};
+  --form-bg: #{$form-bg};
+  --base-dark-bg-2: #{$base-dark-bg-2};
+  --primary-color: #{$primary-color};
+  --white: #{$white};
+  --text-lighter: #{$text-lighter};
+  --base-form-bg: #{$base-form-bg};
+  --base-dark-line: #{$base-dark-line};
+  --text-light: #{$text-light};
+}
