@@ -1,6 +1,7 @@
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useElementBounding } from '@vueuse/core'
 
 
 const dateString = computed(() => {
@@ -12,6 +13,40 @@ const dateString = computed(() => {
     console.log("computed")
     return `${dayName}, ${dayNum} ${monthName} ${year}`
 })
+
+const hotDishes = ref(null);
+    const coldDishes = ref(null);
+    const soup = ref(null);
+    const grill = ref(null);
+    const appetizer = ref(null);
+    const dessert = ref(null);
+
+const menuCategories = ref([
+    { id: 'hotDishes', Name: "Hot Dishes", isActive: true, ref: hotDishes },
+    { id: 'coldDishes', Name: "Cold Dishes", isActive: false, ref: coldDishes },
+    { id: 'soup', Name: "Soup", isActive: false, ref: soup  },
+    { id: 'grill', Name: "Grill", isActive: false, ref: grill  },
+    { id: 'appetizer', Name: "Appetizer", isActive: false , ref: appetizer },
+    { id: 'dessert', Name: "Dessert", isActive: false , ref: dessert }
+])
+
+const activeElementX = ref(0)
+const activeLineX = ref(0)
+const cssVars = computed(()=>{return({'--leftX':activeLineX.value+"px"})})
+
+
+const chooseActiveCategory = (category) => {
+    // Set isActive for all categories to false
+    menuCategories.value.forEach((item) => {
+        item.isActive = false;
+    });
+    // Set isActive to true for the clicked category
+    category.isActive = true;
+    console.log(category.ref)
+    activeElementX.value = useElementBounding(category.ref[0]).x.value
+    activeLineX.value = activeElementX.value - 128;
+}
+
 
 </script>
 
@@ -25,21 +60,17 @@ const dateString = computed(() => {
     </div>
     <div class="menu-selector">
         <div class="menu-selector__items">
-            <p>Hot Dishes</p>
-            <p>Cold Dishes</p>
-            <p>Soup</p>
-            <p>Grill</p>
-            <p>Appetizer</p>
-            <p>Dessert</p>
+            <p v-for="category in menuCategories" class="menu-categories" :class="{ 'active-category': category.isActive }" :ref="category.id"
+                @click="chooseActiveCategory(category)">
+                {{ category.Name }}
+            </p>
         </div>
-        <div class="selector-line"><svg xmlns="http://www.w3.org/2000/svg" width="41" height="4" viewBox="0 0 41 4" fill="none">
-<path d="M2 2H39" stroke="#EA7C69" stroke-width="3" stroke-linecap="round"/>
-</svg></div></div>
-   
+        <div class="selector-line" :style="cssVars"></div>
+
+    </div>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap');
 
 .title {
     color: var(--white);
@@ -96,6 +127,7 @@ const dateString = computed(() => {
 .menu-selector {
     display: flex;
     flex-direction: column;
+    padding-bottom: 24px;
 }
 
 .menu-selector__items {
@@ -108,12 +140,12 @@ const dateString = computed(() => {
 
 
 .menu-selector__items p {
-    color: var(--white);
     font-family: 'Barlow';
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
     line-height: 19.6px;
+    left: var(--leftX);
 }
 
 .selector-line {
@@ -122,9 +154,34 @@ const dateString = computed(() => {
     width: 100%;
     display: flex;
     align-items: center;
+    position: relative;
+    transition: all .3s;
+
+}
+.selector-line::after{
+    content: " ";
+    position: absolute;
+    height: 3px;
+    width: 41px;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    left: var(--leftX);
+    transition: left 0.3s ease; 
+
+}
+.menu-categories{
+    color: var(--white);
+    transition: all .3s;
+    cursor: pointer;
 }
 
+.menu-categories:not(.active-category):hover {
+    color: var(--primary-color);
+}
+.active-category {
+    color: var(--primary-color);
 
+}
 </style> 
 
 

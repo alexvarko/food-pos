@@ -258,6 +258,7 @@ button {
     width: 100%;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
+    
 
 }
 

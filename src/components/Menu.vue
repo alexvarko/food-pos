@@ -1,11 +1,13 @@
 
 <script setup>
 import Header from './MenuHeader.vue'
+import Dishes from './Dishes.vue'
 </script>
 
 <template>
     <div class="menu">
         <Header></Header>
+        <Dishes></Dishes>
     </div>
 </template>
 
@@ -15,4 +17,5 @@ import Header from './MenuHeader.vue'
     width: 1046px;
     padding: 24px 24px 0px 24px;
 }
+
 </style> 
