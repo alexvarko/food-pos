@@ -11,7 +11,7 @@ import Home from './pages/Home.vue'
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap');
 
 .app-container{
   display: flex;
