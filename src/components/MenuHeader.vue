@@ -10,7 +10,6 @@ const dateString = computed(() => {
     const dayNum = date.getDay()
     const monthName = date.toLocaleDateString('en-us', { month: 'short' });
     const year = date.getFullYear()
-    console.log("computed")
     return `${dayName}, ${dayNum} ${monthName} ${year}`
 })
 

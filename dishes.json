@@ -17,7 +17,7 @@
       "responses": [
         {
           "uuid": "a0dbf53c-2160-4ba6-9b63-dabac70732f0",
-          "body": "{}",
+          "body": "",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -46,7 +46,7 @@
       "responses": [
         {
           "uuid": "973d0b93-6d15-4a86-975b-54d9e8341355",
-          "body": "{}",
+          "body": "{\n  \"data\": [\n    {\"id\": 1, \"name\": \"Spicy seasoned seafood noodles\", \"price\": 2.29, \"available\": 20, \"image\": \"http://localhost:3001/dishes/1\"},\n    {\"id\": 2, \"name\": \"Salted Pasta with mushroom sauce\", \"price\": 2.69, \"available\": 16, \"image\": \"http://localhost:3001/dishes/2\"},\n    {\"id\": 3, \"name\": \"Beef dumpling in hot and sour soup\", \"price\": 2.99, \"available\": 22, \"image\": \"http://localhost:3001/dishes/3\"},\n    {\"id\": 4, \"name\": \"Healthy noodle with spinach leaf\", \"price\": 3.29, \"available\": 13, \"image\": \"http://localhost:3001/dishes/4\"},\n    {\"id\": 5, \"name\": \"Hot spicy fried rice with omelet\", \"price\": 3.49, \"available\": 17, \"image\": \"http://localhost:3001/dishes/5\"},\n    {\"id\": 6, \"name\": \"Spicy instant noodle with special omelette\", \"price\": 3.59, \"available\": 17, \"image\": \"http://localhost:3001/dishes/6\"},\n    {\"id\": 7, \"name\": \"Healthy noodle with spinach leaf\", \"price\": 3.49, \"available\": 13, \"image\": \"http://localhost:3001/dishes/7\"},\n    {\"id\": 8, \"name\": \"Hot spicy fried rice with omelet\", \"price\": 3.29, \"available\": 17, \"image\": \"http://localhost:3001/dishes/8\"},\n    {\"id\": 9, \"name\": \"Spicy instant noodle with special omelette\", \"price\": 3.59, \"available\": 17, \"image\": \"http://localhost:3001/dishes/9\"}\n  ]\n}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -55,6 +55,267 @@
           "filePath": "",
           "databucketID": "",
           "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "48358cbb-a4c3-40ce-bf7f-a70590f121d5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/1",
+      "responses": [
+        {
+          "uuid": "be41f31e-96e4-4e9d-8f7e-11860d0a4146",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/1.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "546ec5b9-eba0-4c35-9b73-7a9fedba88d7",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/2",
+      "responses": [
+        {
+          "uuid": "37e016a7-3a9b-4cf5-a05e-89ab346b2cb7",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/2.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "763614c0-9f65-498c-ad74-78999a59d551",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/3",
+      "responses": [
+        {
+          "uuid": "27b5f9eb-d7bb-4dca-8459-36c680d3d069",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/3.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5af498eb-8dea-4b1a-be3e-fc5edb3c1dd2",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/4",
+      "responses": [
+        {
+          "uuid": "c25ec442-42ef-4da9-9ee0-6d1e33b3fe2c",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/4.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "3ae2f274-ee8f-490b-8417-35607e2b25d0",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/5",
+      "responses": [
+        {
+          "uuid": "acf7672e-f025-425c-889c-e44336359941",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/5.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "f2087694-5749-401f-91ba-3b564fb1b2a3",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/6",
+      "responses": [
+        {
+          "uuid": "c9314416-05c7-452c-9865-9014d93d31b8",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/6.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "38484343-bef2-4d05-9a16-58432848cb0d",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/7",
+      "responses": [
+        {
+          "uuid": "06cdf4c0-1679-40d8-9fb8-867b9c7fb339",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/7.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "e31dc10d-1495-4cd0-8ea6-55e43b8a0df5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/8",
+      "responses": [
+        {
+          "uuid": "717d89a4-7937-4a96-b9b6-bd26c69e9530",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/8.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "15bfad68-ae4c-4c39-82b2-216bd40ac77f",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "dishes/9",
+      "responses": [
+        {
+          "uuid": "5cb18a1d-82c2-4de1-9944-be8b5e35c260",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/dishes/9.png",
+          "databucketID": "",
+          "sendFileAsBody": true,
           "rules": [],
           "rulesOperator": "OR",
           "disableTemplating": false,
@@ -75,6 +336,42 @@
     {
       "type": "route",
       "uuid": "53760279-7893-4400-b578-139be24a465c"
+    },
+    {
+      "type": "route",
+      "uuid": "48358cbb-a4c3-40ce-bf7f-a70590f121d5"
+    },
+    {
+      "type": "route",
+      "uuid": "546ec5b9-eba0-4c35-9b73-7a9fedba88d7"
+    },
+    {
+      "type": "route",
+      "uuid": "763614c0-9f65-498c-ad74-78999a59d551"
+    },
+    {
+      "type": "route",
+      "uuid": "5af498eb-8dea-4b1a-be3e-fc5edb3c1dd2"
+    },
+    {
+      "type": "route",
+      "uuid": "3ae2f274-ee8f-490b-8417-35607e2b25d0"
+    },
+    {
+      "type": "route",
+      "uuid": "f2087694-5749-401f-91ba-3b564fb1b2a3"
+    },
+    {
+      "type": "route",
+      "uuid": "38484343-bef2-4d05-9a16-58432848cb0d"
+    },
+    {
+      "type": "route",
+      "uuid": "e31dc10d-1495-4cd0-8ea6-55e43b8a0df5"
+    },
+    {
+      "type": "route",
+      "uuid": "15bfad68-ae4c-4c39-82b2-216bd40ac77f"
     }
   ],
   "proxyMode": false,
@@ -94,6 +391,18 @@
     {
       "key": "Content-Type",
       "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET, POST, PUT,DELETE"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
     }
   ],
   "proxyReqHeaders": [

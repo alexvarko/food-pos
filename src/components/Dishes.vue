@@ -1,26 +1,40 @@
 
 <script setup>
-import { ref } from 'vue'
-const selected = ref('')
+import { ref, onMounted } from 'vue'
+import DishCard from './DishCard.vue';
+const selected = ref('dineIn')
+const dishes = ref(null)
+const getDishes = onMounted(() => {
+    setTimeout(() => {
+        fetch('http://localhost:3001/dishes')
+        .then(response => response.json())
+        .then(data => dishes.value = data)
+    }, 3000);
 
+})
 </script>
 
 <template>
     <div class="dish-chooser">
         <h2 class="title">Choose Dishes</h2>
         <select v-model="selected" class="selection">
-            <option enabled value="">Dine In</option>
-            <option>Dine Out</option>
-            <option>Drinks</option>
+            <option enabled value="dineIn">Dine In</option>
+            <option value="dineOut">Dine Out</option>
+            <option value="drinks">Drinks</option>
         </select>
     </div>
+   <div class="dishes-container">
+    <!-- <h3 v-if="!dishes" class="loading">Loading....</h3>
+    <div v-else v-for="dish in dishes.data">{{dish}}</div> -->
+    <DishCard></DishCard>
+   </div>
 </template>
 
 <style scoped>
 .dish-chooser {
     display: flex;
     justify-content: space-between;
-
+    padding-bottom: 24px;
 }
 
 .title {
@@ -61,6 +75,10 @@ const selected = ref('')
 }
 
 select.selection:focus {
-   outline: none;
+    outline: none;
+}
+
+.dishes-container{
+    height: 100%;
 }
 </style> 
