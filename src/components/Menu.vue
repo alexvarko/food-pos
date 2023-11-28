@@ -14,7 +14,8 @@ import Dishes from './Dishes.vue'
 <style scoped>
 
 .menu{
-    width: 1046px;
+    min-width: 633px;
+    width: 60%;
     padding: 24px 24px 0px 24px;
 }
 

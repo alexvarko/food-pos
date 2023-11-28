@@ -4,12 +4,24 @@ import { ref, onMounted } from 'vue'
 import DishCard from './DishCard.vue';
 const selected = ref('dineIn')
 const dishes = ref(null)
-const getDishes = onMounted(() => {
+const dishesContainer = ref(null);
+
+const calculateMaxHeight = () => {
+    if (dishesContainer.value) {
+        const windowHeight = window.innerHeight;
+        const containerTopOffset = dishesContainer.value.getBoundingClientRect().top;
+        const calculatedMaxHeight = windowHeight - containerTopOffset - /* Add additional offset if needed */ 16;
+        dishesContainer.value.style.maxHeight = `${calculatedMaxHeight}px`;
+    }
+};
+onMounted(() => {
     setTimeout(() => {
         fetch('http://localhost:3001/dishes')
-        .then(response => response.json())
-        .then(data => dishes.value = data)
-    }, 3000);
+            .then(response => response.json())
+            .then(data => dishes.value = data)
+    }, 2000);
+    calculateMaxHeight(); // Calculate initially
+    window.addEventListener('resize', calculateMaxHeight);
 
 })
 </script>
@@ -23,11 +35,10 @@ const getDishes = onMounted(() => {
             <option value="drinks">Drinks</option>
         </select>
     </div>
-   <div class="dishes-container">
-    <!-- <h3 v-if="!dishes" class="loading">Loading....</h3>
-    <div v-else v-for="dish in dishes.data">{{dish}}</div> -->
-    <DishCard></DishCard>
-   </div>
+    <div class="dishes-container" ref="dishesContainer">
+        <h3 v-if="!dishes" class="loading">Loading....</h3>
+        <DishCard v-else v-for="dishitem in dishes.data" :dish="dishitem" :key="dishitem.id">{{ dish }}</DishCard>
+    </div>
 </template>
 
 <style scoped>
@@ -78,7 +89,26 @@ select.selection:focus {
     outline: none;
 }
 
-.dishes-container{
-    height: 100%;
+.dishes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+.dishes-container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.loading {
+
+    color: var(--white);
+    font-family: Barlow;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
 }
 </style> 

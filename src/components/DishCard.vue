@@ -1,15 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
+defineProps(['dish'])
 </script>
 
 <template>
-    <div class="container">
-        <img class="dish-image" src="http://localhost:3001/dishes/1" alt="">
+    <div class="dish-card">
+        <img class="dish-image" :src="dish.image" alt="">
         <div class="infobox">
             <div class="textarea">
-                <p class="dish__name">Spicy seasoned seafood noodles</p>
-                <p class="dish__price">$ 2.29</p>
-                <p class="dish__available">20 Bowls available</p>
+                <p class="dish__name">{{dish.name}}</p>
+                <p class="dish__price">$ {{dish.price}}</p>
+                <p class="dish__available">{{dish.available}} Bowls available</p>
             </div>
 
         </div>
@@ -17,13 +18,14 @@ import { ref } from 'vue'
 </template>
 
 <style scoped>
-.container {
-    height: 260px;
+.dish-card {
+    min-height: 260px;
     width: 192px;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-bottom: 24px;
+    cursor: pointer;
 }
 
 .infobox {
@@ -33,6 +35,8 @@ import { ref } from 'vue'
     position: absolute;
     bottom: 0;
     border-radius: 16px;
+    display: flex;
+    justify-content: center;
 }
 
 .dish-image {
@@ -42,16 +46,48 @@ import { ref } from 'vue'
     left: 50%;
 }
 
-.textarea{
+.textarea {
+
+    width: 144px;
     position: absolute;
     bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     margin-bottom: 24px;
     justify-content: space-between;
-    color: white;
     height: 88px;
+}
+
+.dish__name {
+    color: var(--white);
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+}
+
+.dish__price {
+    color: var(--white);
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+.dish__available {
+    color: var(--text-light);
+    text-align: center;
+    font-family: 'Barlow';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
 }
 </style>
 
