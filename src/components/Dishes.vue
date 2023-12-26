@@ -2,7 +2,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import DishCard from './DishCard.vue';
-const order_type = ref('dineIn')
+const selected = ref('dineIn')
 const dishes = ref(null)
 const dishesContainer = ref(null);
 
@@ -29,7 +29,7 @@ onMounted(() => {
 <template>
     <div class="dish-chooser">
         <h2 class="title">Choose Dishes</h2>
-        <select v-model="order_type" class="selection">
+        <select v-model="selected" class="selection">
             <option enabled value="dineIn">Dine In</option>
             <option value="dineOut">To Go</option>
             <option value="drinks">Delivery</option>
