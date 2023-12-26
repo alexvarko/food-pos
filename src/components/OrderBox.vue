@@ -13,32 +13,48 @@ onMounted(() => {
 
 })
 
+defineProps(['orderTypeFromDishes'])
+
 </script>
 
 
 <template>
   <div class="container">
     <div class="container__inner">
+
       <div class="order__id">
         <h2 class="order__id-title">Orders #{{ randomnumber }}</h2>
       </div>
+
       <div class="order__type">
-        <div class="order__type-btn order__type-btn--active">
+        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'dineIn' }">
           <p class="type-btn__name">
             Dine In
           </p>
         </div>
-        <div class="order__type-btn">
+        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'toGo' }">
           <p class="type-btn__name">
             To Go
           </p>
         </div>
-        <div class="order__type-btn">
+        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'delivery' }">
           <p class="type-btn__name">
             Delivery
           </p>
         </div>
       </div>
+
+      <div class="headings">
+        <div>
+          <p>Item</p>
+        </div>
+        <div class="heading__qty-price">
+          <p>Qty</p>
+          <p>Price</p>
+        </div>
+      </div>
+      <div class="selector-line"></div>
+
     </div>
   </div>
 </template>
@@ -57,6 +73,7 @@ onMounted(() => {
 .container__inner {
   padding-left: 24px;
   padding-top: 24px;
+  padding-right: 24px;
 }
 
 .order__id {
@@ -74,6 +91,7 @@ onMounted(() => {
 .order__type {
   display: flex;
   gap: 8px;
+  padding-bottom: 24px;
 }
 
 .order__type-btn {
@@ -81,6 +99,7 @@ onMounted(() => {
   height: 34px;
   border: 1px solid var(--base-dark-line);
   border-radius: 8px;
+  color: var(--primary-color);
 
 }
 
@@ -89,10 +108,8 @@ onMounted(() => {
   padding: 7px 12px;
   justify-content: center;
   align-items: center;
-  color: var(--white);
   font-family: "Barlow";
   font-size: 14px;
-  font-style: normal;
   font-weight: 600;
   line-height: 140%;
 
@@ -100,6 +117,34 @@ onMounted(() => {
 
 .order__type-btn--active {
   background-color: var(--primary-color);
+  color: var(--white);
   border: none;
+}
+
+.headings,
+.headings div {
+  display: flex;
+  justify-content: space-between;
+  color: var(--white);
+  font-family: "Barlow";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+
+.heading__qty-price {
+  gap: 43px;
+}
+
+.selector-line {
+  margin-top: 24px;
+  height: 0.5px;
+  background-color: var(--base-dark-line);
+  opacity: 0.5;
+  width: 100%;
+  display: flex;
+
+
 }
 </style>

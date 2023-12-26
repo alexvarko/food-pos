@@ -1,8 +1,8 @@
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, defineEmits } from 'vue'
 import DishCard from './DishCard.vue';
-const selected = ref('dineIn')
+// const selected = ref('dineIn')
 const dishes = ref(null)
 const dishesContainer = ref(null);
 
@@ -24,15 +24,26 @@ onMounted(() => {
     window.addEventListener('resize', calculateMaxHeight);
 
 })
+
+const props = defineProps(['modelValue']);
+const emits = defineEmits();
+
+const selected = ref("dineIn");
+
+const emitSelected = () => {
+  emits('update:modelValue', selected.value);
+};
+
+
 </script>
 
 <template>
     <div class="dish-chooser">
         <h2 class="title">Choose Dishes</h2>
-        <select v-model="selected" class="selection">
+        <select v-model="selected" class="selection"  @change="emitSelected">
             <option enabled value="dineIn">Dine In</option>
-            <option value="dineOut">To Go</option>
-            <option value="drinks">Delivery</option>
+            <option value="toGo">To Go</option>
+            <option value="delivery">Delivery</option>
         </select>
     </div>
     <div class="dishes-container" ref="dishesContainer">

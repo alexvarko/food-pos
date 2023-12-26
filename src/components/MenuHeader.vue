@@ -14,24 +14,24 @@ const dateString = computed(() => {
 })
 
 const hotDishes = ref(null);
-    const coldDishes = ref(null);
-    const soup = ref(null);
-    const grill = ref(null);
-    const appetizer = ref(null);
-    const dessert = ref(null);
+const coldDishes = ref(null);
+const soup = ref(null);
+const grill = ref(null);
+const appetizer = ref(null);
+const dessert = ref(null);
 
 const menuCategories = ref([
     { id: 'hotDishes', Name: "Hot Dishes", isActive: true, ref: hotDishes },
     { id: 'coldDishes', Name: "Cold Dishes", isActive: false, ref: coldDishes },
-    { id: 'soup', Name: "Soup", isActive: false, ref: soup  },
-    { id: 'grill', Name: "Grill", isActive: false, ref: grill  },
-    { id: 'appetizer', Name: "Appetizer", isActive: false , ref: appetizer },
-    { id: 'dessert', Name: "Dessert", isActive: false , ref: dessert }
+    { id: 'soup', Name: "Soup", isActive: false, ref: soup },
+    { id: 'grill', Name: "Grill", isActive: false, ref: grill },
+    { id: 'appetizer', Name: "Appetizer", isActive: false, ref: appetizer },
+    { id: 'dessert', Name: "Dessert", isActive: false, ref: dessert }
 ])
 
 const activeElementX = ref(0)
 const activeLineX = ref(0)
-const cssVars = computed(()=>{return({'--leftX':activeLineX.value+"px"})})
+const cssVars = computed(() => { return ({ '--leftX': activeLineX.value + "px" }) })
 
 
 const chooseActiveCategory = (category) => {
@@ -59,8 +59,8 @@ const chooseActiveCategory = (category) => {
     </div>
     <div class="menu-selector">
         <div class="menu-selector__items">
-            <p v-for="category in menuCategories" class="menu-categories" :class="{ 'active-category': category.isActive }" :ref="category.id"
-                @click="chooseActiveCategory(category)">
+            <p v-for="category in menuCategories" class="menu-categories" :class="{ 'active-category': category.isActive }"
+                :ref="category.id" @click="chooseActiveCategory(category)">
                 {{ category.Name }}
             </p>
         </div>
@@ -70,7 +70,6 @@ const chooseActiveCategory = (category) => {
 </template>
 
 <style scoped>
-
 .title {
     color: var(--white);
     font-family: 'Barlow';
@@ -157,7 +156,8 @@ const chooseActiveCategory = (category) => {
     transition: all .3s;
 
 }
-.selector-line::after{
+
+.selector-line::after {
     content: " ";
     position: absolute;
     height: 3px;
@@ -165,10 +165,11 @@ const chooseActiveCategory = (category) => {
     border-radius: 6px;
     background-color: var(--primary-color);
     left: var(--leftX);
-    transition: left 0.3s ease; 
+    transition: left 0.3s ease;
 
 }
-.menu-categories{
+
+.menu-categories {
     color: var(--white);
     transition: all .3s;
     cursor: pointer;
@@ -177,8 +178,20 @@ const chooseActiveCategory = (category) => {
 .menu-categories:not(.active-category):hover {
     color: var(--primary-color);
 }
+
 .active-category {
     color: var(--primary-color);
+
+}
+
+.selector-line {
+    height: 1px;
+    background-color: var(--base-dark-line);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: all .3s;
 
 }
 </style> 

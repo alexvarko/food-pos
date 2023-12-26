@@ -3,15 +3,25 @@
 import Header from './MenuHeader.vue'
 import Dishes from './Dishes.vue'
 import Order from './OrderBox.vue'
+
+import { ref, onMounted, watch } from 'vue';
+
+const orderTypeFromDishes = ref('dineIn');
+
+
+watch(orderTypeFromDishes, (value) => {
+    orderTypeFromDishes.value = value;
+});
+
 </script>
 
 <template>
     <div class="menu">
         <Header></Header>
-        <Dishes></Dishes>
+        <Dishes v-model="orderTypeFromDishes"></Dishes>
     </div>
     <div class="order">
-        <Order></Order>
+        <Order :orderTypeFromDishes="orderTypeFromDishes"></Order>
     </div>
 </template>
 
