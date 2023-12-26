@@ -2,7 +2,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import DishCard from './DishCard.vue';
-const selected = ref('dineIn')
+const order_type = ref('dineIn')
 const dishes = ref(null)
 const dishesContainer = ref(null);
 
@@ -11,7 +11,7 @@ const calculateMaxHeight = () => {
         const windowHeight = window.innerHeight;
         const containerTopOffset = dishesContainer.value.getBoundingClientRect().top;
         const calculatedMaxHeight = windowHeight - containerTopOffset - /* Add additional offset if needed */ 16;
-        dishesContainer.value.style.maxHeight = `${calculatedMaxHeight}px`;
+        dishesContainer.value.style.maxHeight = `${calculatedMaxHeight+20}px`;
     }
 };
 onMounted(() => {
@@ -29,10 +29,10 @@ onMounted(() => {
 <template>
     <div class="dish-chooser">
         <h2 class="title">Choose Dishes</h2>
-        <select v-model="selected" class="selection">
+        <select v-model="order_type" class="selection">
             <option enabled value="dineIn">Dine In</option>
-            <option value="dineOut">Dine Out</option>
-            <option value="drinks">Drinks</option>
+            <option value="dineOut">To Go</option>
+            <option value="drinks">Delivery</option>
         </select>
     </div>
     <div class="dishes-container" ref="dishesContainer">
@@ -63,8 +63,8 @@ onMounted(() => {
     align-items: center;
     gap: 10px;
     border-radius: 8px;
-    border: 1px solid #393C49;
-    background: #1F1D2B;
+    border: 1px solid var(--base-dark-line);
+    background: var(--base-dark-bg-2);
     color: var(--white);
     font-family: 'Barlow';
     font-size: 14px;
@@ -105,7 +105,7 @@ select.selection:focus {
 .loading {
 
     color: var(--white);
-    font-family: Barlow;
+    font-family: 'Barlow';
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
