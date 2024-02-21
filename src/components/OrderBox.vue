@@ -13,8 +13,10 @@ onMounted(() => {
 
 })
 
-defineProps(['orderTypeFromDishes'])
+const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
 
+// const selectedDishes = () => props.dishesSelectedList;
+// const selectedDishesList = ref(selectedDishes.values);
 </script>
 
 
@@ -27,7 +29,8 @@ defineProps(['orderTypeFromDishes'])
       </div>
 
       <div class="order__type">
-        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'dineIn' }">
+        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'dineIn' }"
+          @click="selectedDishes">
           <p class="type-btn__name">
             Dine In
           </p>
@@ -54,7 +57,22 @@ defineProps(['orderTypeFromDishes'])
         </div>
       </div>
       <div class="selector-line"></div>
-
+      <div class="selected-dishes">
+        <h3 v-if="!dishesSelectedList.length" class="loading selected-dishes-empty">Select Dish to order</h3>
+        <div></div>
+      </div>
+      <div class="selector-line"></div>
+      <div class="total">
+        <div class="discount">
+          <p class="total__title">Discount</p>
+          <p class="total__value">$0</p>
+        </div>
+        <div class="sum">
+          <p class="total__title">Sub total</p>
+          <p class="total__value">$0</p>
+        </div>
+      </div>
+      <button class="continue-btn">Continue to Payment</button>
     </div>
   </div>
 </template>
@@ -74,6 +92,11 @@ defineProps(['orderTypeFromDishes'])
   padding-left: 24px;
   padding-top: 24px;
   padding-right: 24px;
+  padding-bottom: 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .order__id {
@@ -132,18 +155,97 @@ defineProps(['orderTypeFromDishes'])
   line-height: 140%;
 }
 
+.headings {
+  padding-bottom: 24px;
+}
 
 .heading__qty-price {
   gap: 43px;
 }
 
 .selector-line {
-  margin-top: 24px;
   height: 0.5px;
   background-color: var(--base-dark-line);
   opacity: 0.5;
   width: 100%;
   display: flex;
+
+
+}
+
+.loading {
+
+  color: var(--white);
+  font-family: 'Barlow';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.selected-dishes {
+  max-height: 455px;
+  height: 100%;
+}
+
+.selected-dishes-empty {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.total {
+  margin-top: 24px;
+  max-height: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-bottom: 42px;
+  gap: 20px;
+}
+
+.total div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total__title {
+
+  font-family: 'Barlow';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  color: var(--text-light);
+}
+
+.total__value {
+  font-family: 'Barlow';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: var(--white);
+}
+
+.continue-btn {
+  width: 100%;
+  min-height: 48px;
+  background: var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
+  border: none;
+  margin-top: auto;
+ 
+
+font-family: 'Barlow';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 140%;
+
+color: var(--base);
 
 
 }

@@ -13,23 +13,28 @@ watch(orderTypeFromDishes, (value) => {
     orderTypeFromDishes.value = value;
 });
 
+
+const dishesSelectedList = ref([]);
+watch(dishesSelectedList, (value) => {
+    dishesSelectedList.value = value;
+});
+
 </script>
 
 <template>
     <div class="menu">
         <Header></Header>
-        <Dishes v-model="orderTypeFromDishes"></Dishes>
+        <Dishes v-model:orderType="orderTypeFromDishes" v-model:selectedDishes="dishesSelectedList"></Dishes>
     </div>
     <div class="order">
-        <Order :orderTypeFromDishes="orderTypeFromDishes"></Order>
+        <Order :orderTypeFromDishes="orderTypeFromDishes" :dishesSelectedList="dishesSelectedList"></Order>
     </div>
 </template>
 
 <style scoped>
 
 .menu{
-    min-width: 633px;
-    width: 60%;
+    width: 55%;
     padding: 24px 24px 0px 24px;
 }
 

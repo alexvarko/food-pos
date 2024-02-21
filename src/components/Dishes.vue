@@ -2,7 +2,6 @@
 <script setup>
 import { ref, onMounted, defineEmits } from 'vue'
 import DishCard from './DishCard.vue';
-// const selected = ref('dineIn')
 const dishes = ref(null)
 const dishesContainer = ref(null);
 
@@ -11,7 +10,7 @@ const calculateMaxHeight = () => {
         const windowHeight = window.innerHeight;
         const containerTopOffset = dishesContainer.value.getBoundingClientRect().top;
         const calculatedMaxHeight = windowHeight - containerTopOffset - /* Add additional offset if needed */ 16;
-        dishesContainer.value.style.maxHeight = `${calculatedMaxHeight+20}px`;
+        dishesContainer.value.style.maxHeight = `${calculatedMaxHeight + 20}px`;
     }
 };
 onMounted(() => {
@@ -25,22 +24,27 @@ onMounted(() => {
 
 })
 
-const props = defineProps(['modelValue']);
+const props = defineProps(['orderType', 'selectedDishes']);
 const emits = defineEmits();
 
 const selected = ref("dineIn");
+const dishesSelectedList = ref([])
 
 const emitSelected = () => {
-  emits('update:modelValue', selected.value);
+    emits('update:orderType', selected.value);
 };
 
+const addDish = (dish) => {
+    dishesSelectedList.value.push(dish);
+    emits('update:selectedDishes', dishesSelectedList.value);
+}
 
 </script>
 
 <template>
     <div class="dish-chooser">
         <h2 class="title">Choose Dishes</h2>
-        <select v-model="selected" class="selection"  @change="emitSelected">
+        <select v-model="selected" class="selection" @change="emitSelected">
             <option enabled value="dineIn">Dine In</option>
             <option value="toGo">To Go</option>
             <option value="delivery">Delivery</option>
@@ -48,7 +52,7 @@ const emitSelected = () => {
     </div>
     <div class="dishes-container" ref="dishesContainer">
         <h3 v-if="!dishes" class="loading">Loading....</h3>
-        <DishCard v-else v-for="dishitem in dishes.data" :dish="dishitem" :key="dishitem.id">{{ dish }}</DishCard>
+        <DishCard v-else v-for="dishitem in dishes.data" :dish="dishitem" :key="dishitem.id" @click="addDish(dishitem)">{{ dish }}</DishCard>
     </div>
 </template>
 
@@ -108,8 +112,9 @@ select.selection:focus {
     overflow-x: hidden;
 
 }
+
 .dishes-container::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 
