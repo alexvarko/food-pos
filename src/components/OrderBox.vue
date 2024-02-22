@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-
+import SelectedDish from './SelectedDish.vue'
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -59,7 +59,7 @@ const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
       <div class="selector-line"></div>
       <div class="selected-dishes">
         <h3 v-if="!dishesSelectedList.length" class="loading selected-dishes-empty">Select Dish to order</h3>
-        <div></div>
+        <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish"></SelectedDish>
       </div>
       <div class="selector-line"></div>
       <div class="total">
@@ -186,6 +186,7 @@ const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
 .selected-dishes {
   max-height: 455px;
   height: 100%;
+  padding-top: 24px;
 }
 
 .selected-dishes-empty {
@@ -233,20 +234,23 @@ const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
   width: 100%;
   min-height: 48px;
   background: var(--primary-color);
+  color: var(--base);
+
   border-radius: 8px;
-  box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
-  border: none;
+  border: 1px;
+  border-color: yellow;
   margin-top: auto;
- 
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  
+}
 
-font-family: 'Barlow';
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 140%;
-
-color: var(--base);
-
+.continue-btn:hover{
+  box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
+  cursor: pointer;
 
 }
 </style>

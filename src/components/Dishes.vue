@@ -35,8 +35,16 @@ const emitSelected = () => {
 };
 
 const addDish = (dish) => {
-    dishesSelectedList.value.push(dish);
+    const index = dishesSelectedList.value.findIndex(item => item.id === dish.id);
+
+    if (index !== -1) {
+        dishesSelectedList.value[index].amount++;
+    } else {
+        dishesSelectedList.value.push({ ...dish, amount: 1 });
+    }
+
     emits('update:selectedDishes', dishesSelectedList.value);
+    console.log(dishesSelectedList.value);
 }
 
 </script>
