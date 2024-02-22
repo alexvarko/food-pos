@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import SelectedDish from './SelectedDish.vue'
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -15,8 +15,14 @@ onMounted(() => {
 
 const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
 
-// const selectedDishes = () => props.dishesSelectedList;
-// const selectedDishesList = ref(selectedDishes.values);
+
+const totalSum = () => props.dishesSelectedList.reduce((sum, dish) => {
+  return sum + (dish.price * dish.amount);
+}, 0)
+
+watch(totalSum, (value) => {
+  totalSum.value = value;
+});
 </script>
 
 
@@ -69,10 +75,10 @@ const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
         </div>
         <div class="sum">
           <p class="total__title">Sub total</p>
-          <p class="total__value">$0</p>
+          <p class="total__value">$ {{ totalSum().toFixed(2) }}</p>
         </div>
       </div>
-      <button class="continue-btn">Continue to Payment</button>
+      <button class="continue-btn" @click="sendSelectedDishes()">Continue to Payment</button>
     </div>
   </div>
 </template>
@@ -187,6 +193,15 @@ const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
   max-height: 455px;
   height: 100%;
   padding-top: 24px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: none;
+  overflow-x: hidden;
+}
+
+.selected-dishes::-webkit-scrollbar {
+  display: none;
+
 }
 
 .selected-dishes-empty {
@@ -245,10 +260,10 @@ const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
-  
+
 }
 
-.continue-btn:hover{
+.continue-btn:hover {
   box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
   cursor: pointer;
 

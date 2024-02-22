@@ -44,7 +44,6 @@ const addDish = (dish) => {
     }
 
     emits('update:selectedDishes', dishesSelectedList.value);
-    console.log(dishesSelectedList.value);
 }
 
 </script>

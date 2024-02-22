@@ -42,6 +42,17 @@ defineProps(['selectedDish'])
 .order-note {
     height: 48px;
     width: 100%;
+    background: var(--base-form-bg);
+    border: 1px solid var(--base-dark-line);
+    border-radius: 8px;
+    outline: none;
+    font-family: 'Barlow';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: var(--text-lighter);
+    padding-left: 14px;
+
 }
 
 .delete-btn {
@@ -55,11 +66,13 @@ defineProps(['selectedDish'])
     transition: all .1s;
 }
 
-.delete-btn:hover{
+.delete-btn:hover {
     border-color: #FF7CA3;
+
     svg path {
         fill: #FF7CA3;
     }
+
     cursor: pointer;
 }
 
