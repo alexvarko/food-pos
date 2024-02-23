@@ -40,7 +40,7 @@ const addDish = (dish) => {
     if (index !== -1) {
         dishesSelectedList.value[index].amount++;
     } else {
-        dishesSelectedList.value.push({ ...dish, amount: 1 });
+        dishesSelectedList.value.push({ ...dish, amount: 1, description: ""  });
     }
 
     emits('update:selectedDishes', dishesSelectedList.value);
@@ -112,6 +112,7 @@ select.selection:focus {
 }
 
 .dishes-container {
+    gap: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

@@ -23,6 +23,9 @@ const totalSum = () => props.dishesSelectedList.reduce((sum, dish) => {
 watch(totalSum, (value) => {
   totalSum.value = value;
 });
+
+const sendSelectedDishes = () => {console.log(props.dishesSelectedList)}
+
 </script>
 
 
@@ -65,7 +68,7 @@ watch(totalSum, (value) => {
       <div class="selector-line"></div>
       <div class="selected-dishes">
         <h3 v-if="!dishesSelectedList.length" class="loading selected-dishes-empty">Select Dish to order</h3>
-        <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish"></SelectedDish>
+        <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish" :key="dish.id" :originalList="dishesSelectedList"></SelectedDish>
       </div>
       <div class="selector-line"></div>
       <div class="total">
