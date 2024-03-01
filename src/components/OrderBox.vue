@@ -1,6 +1,7 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch, computed, watchEffect } from 'vue'
 import SelectedDish from './SelectedDish.vue'
+import PaymentForm from './PaymentForm.vue'
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -24,54 +25,112 @@ watch(totalSum, (value) => {
   totalSum.value = value;
 });
 
-const sendSelectedDishes = () => {console.log(props.dishesSelectedList)}
+
+const paymentEnable = ref(false)
+const container = ref(null)
+const containerOffsetWidth = ref('')
+
+const updateContainerWidth = () => {
+  if (paymentEnable) {
+    containerOffsetWidth.value = container.value.offsetWidth + 'px'
+  }
+}
+
+onMounted(() => {
+  // Initialize child width on mount
+  updateContainerWidth()
+
+  // Listen for window resize events and update child width accordingly
+  window.addEventListener('resize', updateContainerWidth)
+})
+
+onBeforeUnmount(() => {
+  // Clean up resize event listener
+  window.removeEventListener('resize', updateContainerWidth)
+})
+
+const sendSelectedDishes = () => {
+  paymentEnable.value = !paymentEnable.value
+  console.log(container)
+}
+
 
 </script>
 
 
 <template>
-  <div class="container">
-    <div class="container__inner">
+  <div class="container" ref="container" @resize="updateContainerWidth">
+    <div class="container__inner" :class="[paymentEnable ? 'confirment-shift' : '']">
 
-      <div class="order__id">
-        <h2 class="order__id-title">Orders #{{ randomnumber }}</h2>
+      <div v-if="!paymentEnable">
+        <div class="order__id">
+          <h2 class="order__id-title">Orders #{{ randomnumber }}</h2>
+        </div>
+
+        <div class="order__type">
+          <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'dineIn' }"
+            @click="selectedDishes">
+            <p class="type-btn__name">
+              Dine In
+            </p>
+          </div>
+          <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'toGo' }">
+            <p class="type-btn__name">
+              To Go
+            </p>
+          </div>
+          <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'delivery' }">
+            <p class="type-btn__name">
+              Delivery
+            </p>
+          </div>
+        </div>
+
+        <div class="headings">
+          <div>
+            <p>Item</p>
+          </div>
+          <div class="heading__qty-price">
+            <p>Qty</p>
+            <p>Price</p>
+          </div>
+        </div>
       </div>
 
-      <div class="order__type">
-        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'dineIn' }"
-          @click="selectedDishes">
-          <p class="type-btn__name">
-            Dine In
-          </p>
+      <div v-else>
+        <div class="return-arrow">
+          <svg @click="paymentEnable = !paymentEnable" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.5 16.5L4 12M4 12L8.5 7.5M4 12L20 12" stroke="white" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
         </div>
-        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'toGo' }">
-          <p class="type-btn__name">
-            To Go
-          </p>
-        </div>
-        <div class="order__type-btn" :class="{ 'order__type-btn--active': orderTypeFromDishes === 'delivery' }">
-          <p class="type-btn__name">
-            Delivery
-          </p>
-        </div>
-      </div>
+        <div class="confirment__heading">
+          <div class="titles">
+            <h1 class="heading-title">Confirmation</h1>
+            <p class="heading-subtitle">Orders #{{ randomnumber }}</p>
+          </div>
+          <div class="confirment__heading-add-btn">
+            <div class="sidebar__menu-image-box">
 
-      <div class="headings">
-        <div>
-          <p>Item</p>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 1.5V9M9 16.5V9M9 9H16.5M9 9H1.5" stroke="#FAFAFA" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+
+            </div>
+          </div>
         </div>
-        <div class="heading__qty-price">
-          <p>Qty</p>
-          <p>Price</p>
-        </div>
+
       </div>
       <div class="selector-line"></div>
       <div class="selected-dishes">
         <h3 v-if="!dishesSelectedList.length" class="loading selected-dishes-empty">Select Dish to order</h3>
-        <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish" :key="dish.id" :originalList="dishesSelectedList"></SelectedDish>
+        <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish" :key="dish.id"
+          :originalList="dishesSelectedList"></SelectedDish>
       </div>
       <div class="selector-line"></div>
-      <div class="total">
+      <div class="total" :style="[!paymentEnable ? 'margin-top: 24px' : '']">
         <div class="discount">
           <p class="total__title">Discount</p>
           <p class="total__value">$0</p>
@@ -81,31 +140,62 @@ const sendSelectedDishes = () => {console.log(props.dishesSelectedList)}
           <p class="total__value">$ {{ totalSum().toFixed(2) }}</p>
         </div>
       </div>
-      <button class="continue-btn" @click="sendSelectedDishes()">Continue to Payment</button>
+      <button v-if="!paymentEnable" class="continue-btn" @click="sendSelectedDishes()">Continue to Payment</button>
+
+    </div>
+    <div class="container__inner" :class="[paymentEnable ? 'payment-shift' : 'payment-hidden']">
+      <div class="payment__heading">
+        <div class="titles">
+          <h1 class="heading-title">Payment</h1>
+          <p class="heading-subtitle">3 payment methods available</p>
+        </div>
+      </div>
+      <div class="selector-line"></div>
+      <PaymentForm></PaymentForm>
+      <button v-if="!paymentEnable" class="continue-btn" @click="sendSelectedDishes()">Continue to Payment</button>
     </div>
   </div>
 </template>
 
 
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
-  background-color: var(--base-dark-bg-2);
   height: 100%;
   width: 100%;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  position: relative;
+  display: flex;
+  transition: all 0.3s;
+
 }
 
 .container__inner {
+  background-color: var(--base-dark-bg-2);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  position: absolute;
   padding-left: 24px;
   padding-top: 24px;
   padding-right: 24px;
   padding-bottom: 24px;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.confirment-shift {
+  right: v-bind(containerOffsetWidth);
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-right: 1px solid var(--base-dark-line);
+}
+
+.payment-hidden {
+  right: -1000px;
 }
 
 .order__id {
@@ -216,7 +306,7 @@ const sendSelectedDishes = () => {console.log(props.dishesSelectedList)}
 }
 
 .total {
-  margin-top: 24px;
+
   max-height: 62px;
   display: flex;
   flex-direction: column;
@@ -256,7 +346,6 @@ const sendSelectedDishes = () => {console.log(props.dishesSelectedList)}
 
   border-radius: 8px;
   border: 1px;
-  border-color: yellow;
   margin-top: auto;
   font-family: 'Barlow';
   font-style: normal;
@@ -269,6 +358,59 @@ const sendSelectedDishes = () => {console.log(props.dishesSelectedList)}
 .continue-btn:hover {
   box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
   cursor: pointer;
+
+}
+
+.return-arrow {
+  padding-bottom: 16px;
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.confirment__heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment__heading {
+  margin-top: 40px;
+}
+
+.heading-title {
+  font-family: 'Barlow';
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 140%;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.heading-subtitle {
+  font-family: 'Barlow';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: var(--text-light);
+}
+
+.confirment__heading-add-btn {
+  margin-top: 9px;
+  border-radius: 8px;
+  background: var(--primary-color);
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.confirment__heading-add-btn:hover {
+  box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
 
 }
 </style>
