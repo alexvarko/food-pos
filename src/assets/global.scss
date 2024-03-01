@@ -5,3 +5,8 @@ body {
     overflow: hidden;
     background-color: var(--base-dark-bg-1);
 }
+
+
+input:focus{
+    outline: none;
+}

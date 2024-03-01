@@ -16,7 +16,6 @@ onMounted(() => {
 
 const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
 
-
 const totalSum = () => props.dishesSelectedList.reduce((sum, dish) => {
   return sum + (dish.price * dish.amount);
 }, 0)
@@ -49,9 +48,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', updateContainerWidth)
 })
 
-const sendSelectedDishes = () => {
+const stepToPayment = () => {
   paymentEnable.value = !paymentEnable.value
-  console.log(container)
 }
 
 
@@ -124,7 +122,7 @@ const sendSelectedDishes = () => {
 
       </div>
       <div class="selector-line"></div>
-      <div class="selected-dishes">
+      <div class="selected-dishes" :style="[!paymentEnable ? 'padding-top: 24px;' : '']">
         <h3 v-if="!dishesSelectedList.length" class="loading selected-dishes-empty">Select Dish to order</h3>
         <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish" :key="dish.id"
           :originalList="dishesSelectedList"></SelectedDish>
@@ -140,7 +138,7 @@ const sendSelectedDishes = () => {
           <p class="total__value">$ {{ totalSum().toFixed(2) }}</p>
         </div>
       </div>
-      <button v-if="!paymentEnable" class="continue-btn" @click="sendSelectedDishes()">Continue to Payment</button>
+      <button v-if="!paymentEnable" class="continue-btn" @click="stepToPayment()">Continue to Payment</button>
 
     </div>
     <div class="container__inner" :class="[paymentEnable ? 'payment-shift' : 'payment-hidden']">
@@ -151,8 +149,11 @@ const sendSelectedDishes = () => {
         </div>
       </div>
       <div class="selector-line"></div>
-      <PaymentForm></PaymentForm>
-      <button v-if="!paymentEnable" class="continue-btn" @click="sendSelectedDishes()">Continue to Payment</button>
+      <PaymentForm :orderType="orderTypeFromDishes"></PaymentForm>
+      <div class="payment-btns">
+            <button class="cancel-btn" @click="sendSelectedDishes()">Cancel</button>
+            <button class="continue-btn" @click="stepToPayment()">Confirm Payment</button>
+        </div>
     </div>
   </div>
 </template>
@@ -165,7 +166,6 @@ const sendSelectedDishes = () => {
   width: 100%;
   position: relative;
   display: flex;
-  transition: all 0.3s;
 
 }
 
@@ -183,7 +183,6 @@ const sendSelectedDishes = () => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: right 0.3s ease;
   z-index: 999;
 }
 
@@ -285,7 +284,6 @@ const sendSelectedDishes = () => {
 .selected-dishes {
   max-height: 455px;
   height: 100%;
-  padding-top: 24px;
   flex-wrap: wrap;
   justify-content: space-between;
   overflow-y: none;
@@ -355,6 +353,23 @@ const sendSelectedDishes = () => {
 
 }
 
+.cancel-btn {
+  width: 100%;
+  min-height: 48px;
+  background: transparent;
+  color: var(--primary-color);
+
+  border-radius: 8px;
+  border: 1px solid ;
+  margin-top: auto;
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+
+}
+
 .continue-btn:hover {
   box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
   cursor: pointer;
@@ -376,6 +391,7 @@ const sendSelectedDishes = () => {
 
 .payment__heading {
   margin-top: 40px;
+  margin-bottom: 24px;
 }
 
 .heading-title {
@@ -412,5 +428,41 @@ const sendSelectedDishes = () => {
 .confirment__heading-add-btn:hover {
   box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.3);
 
+}
+
+
+
+.input-field {
+
+  width: 100%;
+  height: 48px;
+
+  background: var(--base-form-bg);
+  border: 1px solid var(--base-dark-line);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding-left: 14px;
+  color: var(--text-lighter);
+}
+
+.input-label {
+  margin-bottom: 8px;
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 130%;
+  color: var(--white);
+}
+
+.two-input-in-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 13px;
+}
+
+.payment-btns{
+  display: flex;
+  gap: 6px;
 }
 </style>
