@@ -367,7 +367,7 @@ const stepToPayment = () => {
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
-
+  cursor: pointer;
 }
 
 .continue-btn:hover {

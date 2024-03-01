@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 const paymentMethod = ref('card')
 const cardholderName = ref('')
 const cardNumber = ref('')
@@ -8,6 +8,17 @@ const cvvCode = ref('')
 const props = defineProps(['orderType'])
 const orderTypeName = { 'dineIn': 'Dine In', 'toGo': 'To Go', 'delivery': 'Delivery' }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
+
+const randomTableNumber = ref(null)
+onMounted(() => {
+    randomTableNumber.value = getRandomInt(200)
+
+})
 </script>
 
 <template>
@@ -76,7 +87,7 @@ const orderTypeName = { 'dineIn': 'Dine In', 'toGo': 'To Go', 'delivery': 'Deliv
             <div>
                 <p class="input-label">Table no.</p>
                 <input type="text" id="table-number" name="name" class="input-field"
-                    :placeholder="Math.floor(Math.random() * 200)" disabled />
+                    :placeholder="randomTableNumber" disabled />
             </div>
         </div>
        
