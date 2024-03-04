@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount, watch, computed, watchEffect } from 'vue'
 import SelectedDish from './SelectedDish.vue'
 import PaymentForm from './PaymentForm.vue'
+import GreyLine from '../common/GreyLine.vue'
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -123,13 +124,13 @@ const stepToPayment = () => {
         </div>
 
       </div>
-      <div class="selector-line"></div>
+      <GreyLine></GreyLine>
       <div class="selected-dishes" :style="[!paymentEnable ? 'padding-top: 24px;' : '']">
         <h3 v-if="!dishesSelectedList.length" class="loading selected-dishes-empty">Select Dish to order</h3>
         <SelectedDish v-else v-for="dish in dishesSelectedList" :selectedDish="dish" :key="dish.id"
           :originalList="dishesSelectedList"></SelectedDish>
       </div>
-      <div class="selector-line"></div>
+      <GreyLine></GreyLine>
       <div class="total" :style="[!paymentEnable ? 'margin-top: 24px' : '']">
         <div class="discount">
           <p class="total__title">Discount</p>
@@ -263,15 +264,15 @@ const stepToPayment = () => {
   gap: 43px;
 }
 
-.selector-line {
-  height: 0.5px;
-  background-color: var(--base-dark-line);
-  opacity: 0.5;
-  width: 100%;
-  display: flex;
+// .selector-line {
+//   height: 0.5px;
+//   background-color: var(--base-dark-line);
+//   opacity: 0.5;
+//   width: 100%;
+//   display: flex;
 
 
-}
+// }
 
 .loading {
 

@@ -2,7 +2,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useElementBounding } from '@vueuse/core'
-
+import GreyLine from '../common/GreyLine.vue'
 
 const dateString = computed(() => {
     const date = new Date();
@@ -64,7 +64,7 @@ const chooseActiveCategory = (category) => {
                 {{ category.Name }}
             </p>
         </div>
-        <div class="selector-line" :style="cssVars"></div>
+        <GreyLine :style="cssVars"></GreyLine>
 
     </div>
 </template>
@@ -146,7 +146,7 @@ const chooseActiveCategory = (category) => {
     left: var(--leftX);
 }
 
-.selector-line {
+.GreyLine {
     height: 1px;
     background-color: var(--base-dark-line);
     width: 100%;
@@ -157,7 +157,7 @@ const chooseActiveCategory = (category) => {
 
 }
 
-.selector-line::after {
+.GreyLine::after {
     content: " ";
     position: absolute;
     height: 3px;

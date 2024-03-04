@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import GreyLine from '../common/GreyLine.vue'
 const paymentMethod = ref('card')
 const cardholderName = ref('')
 const cardNumber = ref('')
@@ -23,7 +24,7 @@ onMounted(() => {
 
 <template>
     <div class="payment__form">
-        <div class="selector-line"></div>
+        <GreyLine></GreyLine>
         <h2 class="payment__form-title">Payment Method</h2>
         <div class="payment__form-methods">
             <label class="pay-method-label" for="card">
@@ -79,7 +80,7 @@ onMounted(() => {
             </div>
 
         </div>
-        <div class="selector-line" ></div>
+        <GreyLine></GreyLine>
         <div class="two-input-in-row">
             <div>
                 <p class="input-label">Order Type</p>
@@ -98,15 +99,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 
-.selector-line {
-  height: 0.5px;
-  background-color: var(--base-dark-line);
-  opacity: 0.5;
-  width: 100%;
-  display: flex;
+.GreyLine {
   margin-bottom: 24px;
-
-
 }
 .payment__form {
     height: 100%;

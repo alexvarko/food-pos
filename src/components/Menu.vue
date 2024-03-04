@@ -56,6 +56,5 @@ watch(dishesSelectedList, (value) => {
 .order{
     display: flex;
     flex: 1;
-    /* background-color: var(--base-dark-bg-2); */
 }
 </style> 
