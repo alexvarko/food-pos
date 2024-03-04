@@ -23,6 +23,7 @@ onMounted(() => {
 
 <template>
     <div class="payment__form">
+        <div class="selector-line"></div>
         <h2 class="payment__form-title">Payment Method</h2>
         <div class="payment__form-methods">
             <label class="pay-method-label" for="card">
@@ -78,13 +79,13 @@ onMounted(() => {
             </div>
 
         </div>
-        <div class="selector-line" style="margin-top: 24px;"></div>
+        <div class="selector-line" ></div>
         <div class="two-input-in-row">
             <div>
                 <p class="input-label">Order Type</p>
                 <input class="selection" :placeholder="orderTypeName[orderType]" disabled />
             </div>
-            <div>
+            <div v-if="orderType=='dineIn'">
                 <p class="input-label">Table no.</p>
                 <input type="text" id="table-number" name="name" class="input-field"
                     :placeholder="randomTableNumber" disabled />
@@ -108,7 +109,6 @@ onMounted(() => {
 
 }
 .payment__form {
-    margin-top: 24px;
     height: 100%;
 }
 
@@ -141,7 +141,7 @@ onMounted(() => {
     width: 100px;
     justify-content: center;
     cursor: pointer;
-
+    transition: all .3s;
     svg {
         margin-bottom: 6px;
     }
@@ -154,10 +154,23 @@ onMounted(() => {
     color: var(--text-light);
     border: 1px solid var(--base-dark-line);
     border-radius: 8px;
+    position: relative;
 
 
 }
+.pay-method-label:has(input:checked)::after{
+    content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 6px;
+  margin-right: 6px;
+  width: 16px; /* Adjust width as needed */
+  height: 16px; /* Adjust height as needed */
+  background-image: url(../../static/order-box/checked.svg);
+  background-repeat: no-repeat;
 
+}
 .pay-method-label:has(input:checked) {
     background: var(--base-dark-bg-1);
     border: 1px solid var(--text-light);

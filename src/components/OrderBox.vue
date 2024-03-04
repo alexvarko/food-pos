@@ -15,6 +15,7 @@ onMounted(() => {
 })
 
 const props = defineProps(['orderTypeFromDishes', "dishesSelectedList"])
+const emits = defineEmits(['update:orderPaymentEnable']);
 
 const totalSum = () => props.dishesSelectedList.reduce((sum, dish) => {
   return sum + (dish.price * dish.amount);
@@ -50,6 +51,7 @@ onBeforeUnmount(() => {
 
 const stepToPayment = () => {
   paymentEnable.value = !paymentEnable.value
+  emits('update:orderPaymentEnable', paymentEnable.value);
 }
 
 
@@ -97,7 +99,7 @@ const stepToPayment = () => {
 
       <div v-else>
         <div class="return-arrow">
-          <svg @click="paymentEnable = !paymentEnable" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          <svg @click="stepToPayment" width="24" height="24" viewBox="0 0 24 24" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <path d="M8.5 16.5L4 12M4 12L8.5 7.5M4 12L20 12" stroke="white" stroke-width="1.8" stroke-linecap="round"
               stroke-linejoin="round" />
@@ -148,12 +150,12 @@ const stepToPayment = () => {
           <p class="heading-subtitle">3 payment methods available</p>
         </div>
       </div>
-      <div class="selector-line"></div>
+      
       <PaymentForm :orderType="orderTypeFromDishes"></PaymentForm>
       <div class="payment-btns">
-            <button class="cancel-btn" @click="sendSelectedDishes()">Cancel</button>
-            <button class="continue-btn" @click="stepToPayment()">Confirm Payment</button>
-        </div>
+        <button class="cancel-btn" @click="stepToPayment()">Cancel</button>
+        <button class="continue-btn" @click="">Confirm Payment</button>
+      </div>
     </div>
   </div>
 </template>
@@ -350,6 +352,8 @@ const stepToPayment = () => {
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
+  transition: all .3s;
+
 
 }
 
@@ -360,14 +364,22 @@ const stepToPayment = () => {
   color: var(--primary-color);
 
   border-radius: 8px;
-  border: 1px solid ;
+  border: 1px solid;
   margin-top: auto;
   font-family: 'Barlow';
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
+  transition: all .3s;
+}
+
+.cancel-btn:hover {
   cursor: pointer;
+  color: #FF7CA3;
+  border-color: #FF7CA3;
+
+
 }
 
 .continue-btn:hover {
@@ -423,6 +435,8 @@ const stepToPayment = () => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all .3s;
+
 }
 
 .confirment__heading-add-btn:hover {
@@ -461,7 +475,7 @@ const stepToPayment = () => {
   gap: 13px;
 }
 
-.payment-btns{
+.payment-btns {
   display: flex;
   gap: 6px;
 }
