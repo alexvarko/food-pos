@@ -6,7 +6,8 @@ import Home from './pages/Home.vue'
 <template>
   <div class="app-container">
     <LeftSidebar></LeftSidebar>
-    <Home></Home>
+    <!-- <Home></Home> -->
+    <router-view></router-view>
   </div>
 </template>
 
