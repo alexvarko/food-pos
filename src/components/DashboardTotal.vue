@@ -1,6 +1,8 @@
 <script setup>
 import DashboardHeader from '../components/DashboardHeader.vue'
 import TotalCard from './TotalCard.vue';
+import OrderReport from './OrderReport.vue';
+
 import { ref, onMounted } from 'vue'
 
 const totalRevenue = ref(null)
@@ -32,14 +34,16 @@ onMounted(() => {
             <TotalCard :imgUrl="'../../static/dashboard/customer.svg'" :totalStats="totalCustomers"></TotalCard>
         </div>
         <div v-else class="loading">Loading...</div>
-
+        <OrderReport v-if="totalRevenue !== null && totalOrdered !== null && totalCustomers !== null">></OrderReport>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .dashboard-total {
     width: 55%;
-    padding: 24px 24px 0px 24px;
+    margin: 24px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 .dashboard-header {
@@ -57,11 +61,11 @@ onMounted(() => {
 
 .loading {
 
-color: var(--white);
-font-family: 'Barlow';
-font-size: 20px;
-font-style: normal;
-font-weight: 600;
-line-height: 140%;
+    color: var(--white);
+    font-family: 'Barlow';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
 }
 </style>
