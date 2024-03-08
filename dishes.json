@@ -326,6 +326,93 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "817d4e62-79b5-4c77-be2a-a59741c59853",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "total_revenue",
+      "responses": [
+        {
+          "uuid": "dde2da93-33a9-4357-80ee-0b44c2b1995b",
+          "body": "{\n  \"name\": \"revenue\",\n  \"percentage\": {{float -55 70}},\n  \"amount\": {{float 6000 12000}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "4fdb9911-c24f-4c3d-9f51-62b066c49d15",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "total_ordered",
+      "responses": [
+        {
+          "uuid": "fde26a59-3dde-413d-a350-9fe3a36388dc",
+          "body": "{\n  \"name\": \"ordered\",\n  \"percentage\": {{float -30 50}},\n  \"amount\": {{int 15000 30000}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "232c12e9-c86a-4a75-a8e4-f9f17c7a94e2",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "total_customers",
+      "responses": [
+        {
+          "uuid": "30b894d4-b25b-4f97-8bd5-b53f18865e6a",
+          "body": "{\n  \"name\": \"customers\",\n  \"percentage\": {{float -15 30}},\n  \"amount\": {{int 1000 3000}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -372,6 +459,18 @@
     {
       "type": "route",
       "uuid": "15bfad68-ae4c-4c39-82b2-216bd40ac77f"
+    },
+    {
+      "type": "route",
+      "uuid": "817d4e62-79b5-4c77-be2a-a59741c59853"
+    },
+    {
+      "type": "route",
+      "uuid": "4fdb9911-c24f-4c3d-9f51-62b066c49d15"
+    },
+    {
+      "type": "route",
+      "uuid": "232c12e9-c86a-4a75-a8e4-f9f17c7a94e2"
     }
   ],
   "proxyMode": false,

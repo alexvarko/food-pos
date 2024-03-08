@@ -3,15 +3,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useElementBounding } from '@vueuse/core'
 import GreyLine from '../common/GreyLine.vue'
-
-const dateString = computed(() => {
-    const date = new Date();
-    const dayName = date.toLocaleDateString('en-us', { weekday: 'long' });
-    const dayNum = date.getDay()
-    const monthName = date.toLocaleDateString('en-us', { month: 'short' });
-    const year = date.getFullYear()
-    return `${dayName}, ${dayNum} ${monthName} ${year}`
-})
+import CurrentDate from '../common/CurrentDate.vue';
 
 const hotDishes = ref(null);
 const coldDishes = ref(null);
@@ -53,7 +45,7 @@ const chooseActiveCategory = (category) => {
     <div class="header">
         <div class="title-date">
             <h1 class="title">Jaegar Resto</h1>
-            <h3 class="date">{{ dateString }}</h3>
+            <CurrentDate></CurrentDate>
         </div>
         <input type="text" class="header-input" placeholder="Search for food, coffe, etc..">
     </div>
@@ -78,15 +70,6 @@ const chooseActiveCategory = (category) => {
     font-weight: 600;
     line-height: 39.2px;
 
-}
-
-.date {
-    color: var(--text-lighter);
-    font-family: 'Barlow';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 22.4px;
 }
 
 .header {

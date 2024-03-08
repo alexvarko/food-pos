@@ -1,11 +1,13 @@
+
+<script setup>
+import DashboardTotal from '../components/DashboardTotal.vue'
+</script>
+
 <template>
-    
+    <DashboardTotal></DashboardTotal>
 
 </template>
 
-<script>
-
-</script>
 
 <style scoped lang="scss">
 
