@@ -10,3 +10,7 @@ body {
 input:focus{
     outline: none;
 }
+
+select:hover{
+    cursor: pointer;
+}

@@ -40,7 +40,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .dashboard-total {
-    width: 55%;
     margin: 24px 24px 24px 24px;
     display: flex;
     flex-direction: column;

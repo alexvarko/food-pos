@@ -404,7 +404,7 @@ const stepToPayment = () => {
 
 .payment__heading {
   margin-top: 40px;
-  margin-bottom: 24px;
+  margin-bottom: 46px;
 }
 
 .heading-title {

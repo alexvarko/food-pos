@@ -413,6 +413,238 @@
         }
       ],
       "responseMode": null
+    },
+    {
+      "uuid": "46d241d3-c850-48dc-9c27-c92d0f3350a1",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "order_report",
+      "responses": [
+        {
+          "uuid": "0ee96068-4a9f-4249-9bc6-f95d14eefa11",
+          "body": "[\n    {\"id\": 1, \"customer\": \"Eren Jaegar\", \"menu\": \"Spicy seasoned seafood noodles\", \"total_payment\": 125, \"status\": \"Completed\", \"image\": \"http://localhost:3001/customer/1\"},\n    {\"id\": 2, \"customer\": \"Reiner Braunn\", \"menu\": \"Salted Pasta with mushroom sauce\", \"total_payment\": 145, \"status\": \"Preparing\", \"image\": \"http://localhost:3001/customer/2\"},\n    {\"id\": 3, \"customer\": \"Levi Ackerman\", \"menu\": \"Beef dumpling in hot and sour soup\", \"total_payment\": 105, \"status\": \"Pending\", \"image\": \"http://localhost:3001/customer/3\"},\n    {\"id\": 4, \"customer\": \"Historia Reiss\", \"menu\": \"Hot spicy fried rice with omelet\", \"total_payment\": 45, \"status\": \"Completed\", \"image\": \"http://localhost:3001/customer/4\"},\n    {\"id\": 5, \"customer\": \"Hanji Zoe\", \"menu\": \"Hot spicy fried rice with omelet\", \"total_payment\": 245, \"status\": \"Completed\", \"image\": \"http://localhost:3001/customer/5\"},\n    {\"id\": 6, \"customer\": \"Armin Arlert\", \"menu\": \"Hot spicy fried rice with omelet\", \"total_payment\": 435, \"status\": \"Completed\", \"image\": \"http://localhost:3001/customer/6\"}\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "3a1221e7-1349-4ad6-82b5-c57b16be30e5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "customer/1",
+      "responses": [
+        {
+          "uuid": "c69fe831-0e58-4954-8262-f6747e3e2dd3",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/order-report/avatar-1.png",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "d2af48f5-1be7-46f9-bc28-85da9adff58c",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "customer/2",
+      "responses": [
+        {
+          "uuid": "e4670f7e-ecb1-4bdc-954b-7ef5c074867d",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/order-report/avatar-2.png",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f7b02afb-1f28-4a88-8aaf-cfaa83d5ec9e",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "customer/3",
+      "responses": [
+        {
+          "uuid": "d51b9b47-eb80-43e0-927f-d7781b959fe1",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/order-report/avatar-3.png",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "d7c51d92-6d42-417e-87e5-f2a54ccc6c98",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "customer/4",
+      "responses": [
+        {
+          "uuid": "022ea837-3af3-48f9-a08c-776df400b785",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/order-report/avatar-4.png",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "1dea82b1-eb0b-4915-8412-b52a6f9b33f5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "customer/5",
+      "responses": [
+        {
+          "uuid": "e2ce066b-c02d-4e65-8144-ada27935e402",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/order-report/avatar-5.png",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "c3d3978e-49c5-4fcf-967a-ff900edd077d",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "customer/6",
+      "responses": [
+        {
+          "uuid": "4950ce8b-af2f-4744-ab33-4590e64cd2d8",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "FILE",
+          "filePath": "/home/alex/Documents/Learn frontend/Learn Vue/food-pos/static/order-report/avatar-6.png",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "279d293c-ec5c-43f9-8cea-808ac1a935a4",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "most_ordered",
+      "responses": [
+        {
+          "uuid": "d05485e9-96ce-4231-9322-a7634e00fa11",
+          "body": "[\n  {\"id\": 1, \"name\": \"Spicy seasoned seafood noodles\", \"ordered\": 200, \"image\": \"http://localhost:3001/dishes/1\"},\n  {\"id\": 2, \"name\": \"Salted Pasta with mushroom sauce\", \"ordered\": 120, \"image\": \"http://localhost:3001/dishes/2\"},\n  {\"id\": 3, \"name\": \"Beef dumpling in hot and sour soup\",  \"ordered\": 80, \"image\": \"http://localhost:3001/dishes/3\"}\n  ]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
     }
   ],
   "rootChildren": [
@@ -471,6 +703,38 @@
     {
       "type": "route",
       "uuid": "232c12e9-c86a-4a75-a8e4-f9f17c7a94e2"
+    },
+    {
+      "type": "route",
+      "uuid": "46d241d3-c850-48dc-9c27-c92d0f3350a1"
+    },
+    {
+      "type": "route",
+      "uuid": "3a1221e7-1349-4ad6-82b5-c57b16be30e5"
+    },
+    {
+      "type": "route",
+      "uuid": "d2af48f5-1be7-46f9-bc28-85da9adff58c"
+    },
+    {
+      "type": "route",
+      "uuid": "f7b02afb-1f28-4a88-8aaf-cfaa83d5ec9e"
+    },
+    {
+      "type": "route",
+      "uuid": "d7c51d92-6d42-417e-87e5-f2a54ccc6c98"
+    },
+    {
+      "type": "route",
+      "uuid": "1dea82b1-eb0b-4915-8412-b52a6f9b33f5"
+    },
+    {
+      "type": "route",
+      "uuid": "c3d3978e-49c5-4fcf-967a-ff900edd077d"
+    },
+    {
+      "type": "route",
+      "uuid": "279d293c-ec5c-43f9-8cea-808ac1a935a4"
     }
   ],
   "proxyMode": false,
