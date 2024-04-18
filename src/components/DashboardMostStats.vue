@@ -53,13 +53,89 @@ onMounted(() => {
                 </select>
             </div>
             <GreyLine></GreyLine>
-            <Chart></Chart>
+            <div class="chart-box">
+                <Chart></Chart>
+                <div class="chart-stats">
+                    <div class="chart-stats-item">
+                        <div class="dot-box" style="background-color: #FF7CA3;"></div>
+                        <div class="chart-stats-text">
+                            <p class="title">Dine In</p>
+                            <p class="info">200 customers</p>
+                        </div>
+                    </div>
+                    <div class="chart-stats-item">
+                        <div class="dot-box" style="background-color: #FFB572;"></div>
+                        <div class="chart-stats-text">
+                            <p class="title">To Go</p>
+                            <p class="info">122 customers</p>
+                        </div>
+                    </div>
+                    <div class="chart-stats-item">
+                        <div class="dot-box" style="background-color: #65B0F6;"></div>
+                        <div class="chart-stats-text">
+                            <p class="title">Delivery</p>
+                            <p class="info">264 customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.info {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    color: var(--text-light);
+}
 
+.title {
+
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 130%;
+
+    color: var(--white);
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+}
+
+.chart-stats-item {
+    display: flex;
+    gap: 10px;
+}
+
+.chart-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dot-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+
+.chart-box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: center;
+}
 
 .view-all__btn {
     position: absolute;
